@@ -1,6 +1,7 @@
 from rest_framework import viewsets
-from .models import Profile, Project
-from .serializers import ProfileSerializer, ProjectSerializer
+from .models import Profile, Project, Certificate, CertifyingInstitution
+from .serializers import ProfileSerializer, ProjectSerializer, CertificateSerializer, CertifyingInstitutionSerializer
+
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.shortcuts import render
@@ -28,3 +29,11 @@ class ProjectViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
 
 
+class CertificateViewSet(viewsets.ModelViewSet):
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateSerializer
+
+
+class CertifyingInstitutionViewSet(viewsets.ModelViewSet):
+    queryset = CertifyingInstitution.objects.all()
+    serializer_class = CertifyingInstitutionSerializer

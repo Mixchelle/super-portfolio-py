@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Perfil</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #555;
+        }
+
+        p {
+            font-size: 16px;
+            color: #777;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            font-size: 16px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detalhes do Perfil</h1>
+    
+    <p><strong>Nome:</strong> {{ profile.name }}</p>
+    <p><strong>GitHub:</strong> <a href="{{ profile.github }}">{{ profile.github }}</a></p>
+    <p><strong>LinkedIn:</strong> <a href="{{ profile.linkedin }}">{{ profile.linkedin }}</a></p>
+    
+    <h2>Biografia:</h2>
+    <p>{{ profile.bio }}</p>
+
+    <h2>Projetos Relacionados:</h2>
+    <ul>
+        {% for project in profile.project_set.all %}
+            <li>{{ project.name }} - {{ project.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Certificados:</h2>
+    <ul>
+        {% for certificate in certificates %}
+            <li>
+                <strong>{{ certificate.name }}</strong> - 
+                Emitido por: {{ certificate.certifying_institution.name }} -
+                Data de Emissão: {{ certificate.timestamp|date:"F d, Y" }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
