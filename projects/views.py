@@ -19,7 +19,11 @@ class ProfileViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         if request.method == 'GET':
-            context = {'profile': instance}  #
+            context = {
+                'profile': instance,
+                'projects': instance.projects.all(),
+                'certificates': instance.certificates.all()
+            }
             return render(request, 'profile_detail.html', context)
         return super().retrieve(request, *args, **kwargs)
 

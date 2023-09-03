@@ -48,21 +48,26 @@
     <p>{{ profile.bio }}</p>
 
     <h2>Projetos Relacionados:</h2>
-    <ul>
-        {% for project in profile.project_set.all %}
-            <li>{{ project.name }} - {{ project.description }}</li>
-        {% endfor %}
-    </ul>
+<ul>
+    {% for project in projects %}
+        <li>{{project.name}}</li>
+        <li>{{project.description}}</li>
+        <li>{{project.github_url}}</li>
+        <li>{{project.keyword}}</li>
+        <li>{{project.key_skill}}</li>
+    {% endfor %}
+</ul>
 
-    <h2>Certificados:</h2>
-    <ul>
-        {% for certificate in certificates %}
-            <li>
-                <strong>{{ certificate.name }}</strong> - 
-                Emitido por: {{ certificate.certifying_institution.name }} -
-                Data de Emissão: {{ certificate.timestamp|date:"F d, Y" }}
-            </li>
-        {% endfor %}
-    </ul>
+<h2>Certificados:</h2>
+<ul>
+    {% for certificate in certificates %}
+        <li>
+            <strong>{{ certificate.name }}</strong> - 
+            Emitido por: {{ certificate.certifying_institution.name }} -
+            Data de Emissão: {{ certificate.timestamp|date:"F d, Y" }}
+        </li>
+    {% endfor %}
+</ul>
+
 </body>
 </html>
